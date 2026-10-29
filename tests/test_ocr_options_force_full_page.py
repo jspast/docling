@@ -16,12 +16,18 @@ import pytest
 
 from docling.datamodel.pipeline_options import (
     EasyOcrOptions,
+    IndraOcrOptions,
     OcrMode,
     RapidOcrOptions,
     TesseractOcrOptions,
 )
 
-OCR_OPTION_CLASSES = [EasyOcrOptions, RapidOcrOptions, TesseractOcrOptions]
+OCR_OPTION_CLASSES = [
+    EasyOcrOptions,
+    IndraOcrOptions,
+    RapidOcrOptions,
+    TesseractOcrOptions,
+]
 
 
 @pytest.fixture(autouse=True)

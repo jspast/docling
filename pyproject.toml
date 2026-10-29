@@ -234,6 +234,10 @@ feat-ocr-nemotron = [
   'nemotron-ocr>=2.0.0 ; python_version == "3.12" and sys_platform == "linux" and platform_machine == "x86_64"',
 ]
 
+feat-ocr-indra = [
+  'indra-ocr>=1.1.2,<2.0.0',
+]
+
 # ============================================================================
 # MODELS
 # ============================================================================
@@ -504,6 +508,7 @@ allowed-unresolved-imports = [
   "docling_ibm_models.**",
   "docling_parse.**",
   "easyocr.**",
+  "indra_ocr.**",
   "filetype.**",
   "huggingface_hub.**",
   "lxml.**",

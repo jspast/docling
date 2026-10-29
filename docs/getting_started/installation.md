@@ -83,6 +83,7 @@ The following table summarizes the extras available in the `docling` package. Th
 | `ocrmac` | Installs the OcrMac OCR engine. |
 | `htmlrender` | Installs dependencies for HTML page rendering in the HTML backend. |
 | `rapidocr` | Installs the [RapidOCR](https://github.com/RapidAI/RapidOCR) OCR engine with [onnxruntime](https://github.com/microsoft/onnxruntime/) backend. |
+| `indra-ocr` | Installs the [Indra OCR](https://github.com/datalab-to/indra) engine. |
 
 For Nemotron OCR, install `docling-slim[feat-ocr-nemotron]` alongside `docling` as shown below.
 
@@ -101,6 +102,7 @@ the following engines.
 | Tesseract CLI | System dependency. See description below. | `TesseractCliOcrOptions` |
 | OcrMac | System dependency. See description below. | `OcrMacOptions` |
 | [RapidOCR](https://github.com/RapidAI/RapidOCR) | `rapidocr` extra or via `pip install rapidocr onnxruntime` | `RapidOcrOptions` |
+| [Indra OCR](https://github.com/datalab-to/indra) | `indra-ocr` extra or via `pip install indra-ocr` | `IndraOcrOptions` |
 | [OnnxTR](https://github.com/felixdittrich92/OnnxTR) | Can be installed via the plugin system `pip install "docling-ocr-onnxtr[cpu]"`. Please take a look at [docling-OCR-OnnxTR](https://github.com/felixdittrich92/docling-OCR-OnnxTR).| `OnnxtrOcrOptions` |
 
 The Docling `DocumentConverter` allows you to choose the OCR engine with the `ocr_options` settings.

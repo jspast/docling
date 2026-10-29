@@ -5,6 +5,7 @@
 Docling supports multiple OCR engines that can be installed as extra packages:
 
 - [RapidOCR](https://github.com/RapidAI/RapidOCR)
+- [Indra OCR](https://github.com/datalab-to/indra)
 - [Nemotron-OCR](https://huggingface.co/nvidia/nemotron-ocr-v2)
 - [EasyOCR](https://github.com/jaidedai/easyocr)
 - [ocrmac](https://github.com/straussmaximilian/ocrmac)

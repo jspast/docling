@@ -1937,6 +1937,9 @@ easyocr = [
 htmlrender = [
     { name = "docling-slim", extra = ["format-html-render"] },
 ]
+indra-ocr = [
+    { name = "docling-slim", extra = ["feat-ocr-indra"] },
+]
 ocrmac = [
     { name = "docling-slim", extra = ["feat-ocr-mac"] },
 ]
@@ -1962,6 +1965,7 @@ xbrl = [
 [package.metadata]
 requires-dist = [
     { name = "docling-slim", extras = ["feat-ocr-easyocr"], marker = "extra == 'easyocr'", editable = "." },
+    { name = "docling-slim", extras = ["feat-ocr-indra"], marker = "extra == 'indra-ocr'", editable = "." },
     { name = "docling-slim", extras = ["feat-ocr-mac"], marker = "extra == 'ocrmac'", editable = "." },
     { name = "docling-slim", extras = ["feat-ocr-rapidocr-onnx"], marker = "extra == 'rapidocr'", editable = "." },
     { name = "docling-slim", extras = ["feat-ocr-tesserocr"], marker = "extra == 'tesserocr'", editable = "." },
@@ -1973,7 +1977,7 @@ requires-dist = [
     { name = "docling-slim", extras = ["models-vlm-inline"], marker = "extra == 'vlm'", editable = "." },
     { name = "docling-slim", extras = ["standard"], editable = "." },
 ]
-provides-extras = ["easyocr", "tesserocr", "ocrmac", "vlm", "rapidocr", "asr", "htmlrender", "remote-serving", "onnxruntime", "xbrl"]
+provides-extras = ["easyocr", "tesserocr", "ocrmac", "vlm", "rapidocr", "indra-ocr", "asr", "htmlrender", "remote-serving", "onnxruntime", "xbrl"]
 
 [[package]]
 name = "docling-client"
@@ -2224,6 +2228,9 @@ feat-ocr-easyocr = [
     { name = "easyocr" },
     { name = "scikit-image", version = "0.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "scikit-image", version = "0.26.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+]
+feat-ocr-indra = [
+    { name = "indra-ocr" },
 ]
 feat-ocr-mac = [
     { name = "ocrmac", marker = "sys_platform == 'darwin'" },
@@ -2524,6 +2531,7 @@ requires-dist = [
     { name = "filetype", specifier = ">=1.2.0,<2.0.0" },
     { name = "httpx", marker = "extra == 'service-client'", specifier = ">=0.28,<1.0.0" },
     { name = "huggingface-hub", marker = "extra == 'models-local'", specifier = ">=0.23,<3" },
+    { name = "indra-ocr", marker = "extra == 'feat-ocr-indra'", specifier = ">=1.1.2,<2.0.0" },
     { name = "langcodes", specifier = ">=3.5.0,<4.0.0" },
     { name = "librosa", marker = "extra == 'format-video'", specifier = ">=0.10.0,<2.0.0" },
     { name = "lxml", marker = "extra == 'format-xml-jats'", specifier = ">=4.0.0,<7.0.0" },
@@ -2591,7 +2599,7 @@ requires-dist = [
     { name = "websockets", marker = "extra == 'service-client'", specifier = ">=14.0,<18.0" },
     { name = "whisper-s2t-reborn", marker = "(platform_machine != 'arm64' and extra == 'format-audio') or (sys_platform != 'darwin' and extra == 'format-audio')", specifier = ">=1.8.0,<2.0.0" },
 ]
-provides-extras = ["convert-core", "extract-core", "format-pdf-pypdfium2", "format-pdf-docling", "format-pdf", "format-docx", "format-pptx", "format-xlsx", "format-office", "format-opendocument", "format-html", "format-markdown", "format-web", "format-latex", "format-email", "format-iwork", "format-xml-jats", "format-xml-uspto", "format-xml-xbrl", "format-html-render", "format-audio", "feat-asr-transformers", "format-video", "feat-ocr-rapidocr", "feat-ocr-rapidocr-onnx", "feat-ocr-easyocr", "feat-ocr-tesserocr", "feat-ocr-mac", "feat-ocr-nemotron", "models-local", "models-remote", "models-onnxruntime", "models-vlm-inline", "feat-chunking", "service-client", "cli", "standard", "all"]
+provides-extras = ["convert-core", "extract-core", "format-pdf-pypdfium2", "format-pdf-docling", "format-pdf", "format-docx", "format-pptx", "format-xlsx", "format-office", "format-opendocument", "format-html", "format-markdown", "format-web", "format-latex", "format-email", "format-iwork", "format-xml-jats", "format-xml-uspto", "format-xml-xbrl", "format-html-render", "format-audio", "feat-asr-transformers", "format-video", "feat-ocr-rapidocr", "feat-ocr-rapidocr-onnx", "feat-ocr-easyocr", "feat-ocr-tesserocr", "feat-ocr-mac", "feat-ocr-nemotron", "feat-ocr-indra", "models-local", "models-remote", "models-onnxruntime", "models-vlm-inline", "feat-chunking", "service-client", "cli", "standard", "all"]
 
 [package.metadata.requires-dev]
 constraints = [
@@ -3883,6 +3891,25 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/16/f9/795a9a483b9f0168ab3e32906039140e233a546c04dec35dd671733de369/importlib_metadata-9.1.0.tar.gz", hash = "sha256:9607fb24f95d4e0b1c17d57ec4604357d76d3f0d154f19fd4861f2e31c8e4065", size = 62078, upload-time = "2026-10-22T23:22:14.12Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a4/9f/2e33795e8765420ac43de1f29fe3d827ab4eaa45cbcf4a5de83555a3f9dd/importlib_metadata-9.1.0-py3-none-any.whl", hash = "sha256:626c65eddcd23c0ee0ffb17567aa882f8cfce0e552c424f2fa37c8b679374078", size = 28434, upload-time = "2026-10-22T23:22:12.531Z" },
+]
+
+[[package]]
+name = "indra-ocr"
+version = "1.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
+    { name = "numpy", version = "2.5.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "onnxruntime", version = "1.23.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "onnxruntime", version = "1.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "opencv-python-headless" },
+    { name = "pypdfium2" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/f6/0d0cc6c9e386612fc3dba27cee7a7b8b3f65ea4b91746b9f3db191b79dad/indra_ocr-1.1.2.tar.gz", hash = "sha256:405a40b8a62eb28d36cf96f236f2639286fbc791407733c16f93451dbe733914", size = 112346, upload-time = "2026-10-20T01:41:19.679Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3f/9a/ad0b5a2d72acc47bf321fc9c73c559b4c7743228c59f55949d2c050e4328/indra_ocr-1.1.2-py3-none-any.whl", hash = "sha256:22c82720968dd91b11ae137865fa01edaed29d7c1c11dd5d9c4a084bc3654da2", size = 96141, upload-time = "2026-10-20T01:41:17.934Z" },
 ]
 
 [[package]]

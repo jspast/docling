@@ -203,7 +203,7 @@ class OcrOptions(BaseOptions):
     See Also:
         `OcrAutoOptions`: Automatic engine selection based on availability.
         `EasyOcrOptions`, `TesseractCliOcrOptions`, `TesseractOcrOptions`,
-        `RapidOcrOptions`, `OcrMacOptions`, `NemotronOcrOptions`: Engine-specific
+        `RapidOcrOptions`, `IndraOcrOptions`, `OcrMacOptions`, `NemotronOcrOptions`: Engine-specific
         configurations.
     """
 
@@ -514,6 +514,17 @@ class RapidOcrOptions(OcrOptions):
     model_config = ConfigDict(
         extra="forbid",
     )
+
+
+class IndraOcrOptions(OcrOptions):
+    """Configuration for the Indra OCR engine."""
+
+    kind: ClassVar[Literal["indra-ocr"]] = "indra-ocr"
+    lang: list[str] = []
+    threads: Annotated[
+        PositiveInt,
+        Field(description="Number of CPU worker threads used by Indra OCR."),
+    ] = 4
 
 
 class NemotronOcrOptions(OcrOptions):
