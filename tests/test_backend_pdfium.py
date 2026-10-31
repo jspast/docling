@@ -97,6 +97,22 @@ def test_crop_page_image(test_doc_path):
     # im.show()
 
 
+def test_extract_single_embedded_image():
+    doc_backend = _get_backend(
+        Path("tests/data/pdf/sources/picture_classification.pdf")
+    )
+    try:
+        page_backend: PyPdfiumPageBackend = doc_backend.load_page(0)
+        bitmap_bbox = next(iter(page_backend.get_bitmap_rects()))
+
+        image = page_backend.get_embedded_image(bitmap_bbox)
+
+        assert image is not None
+        assert image.size == (768, 474)
+    finally:
+        doc_backend.unload()
+
+
 def test_num_pages(test_doc_path):
     doc_backend = _get_backend(test_doc_path)
     assert doc_backend.page_count() == 9

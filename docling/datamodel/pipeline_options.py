@@ -2277,6 +2277,15 @@ class PdfPipelineOptions(PaginatedPipelineOptions):
             )
         ),
     ] = False
+    use_embedded_picture_images: Annotated[
+        bool,
+        Field(
+            description=(
+                "Use a directly extracted PDF image for a picture when its region contains exactly one safe embedded "
+                "image. Falls back to the rendered page crop for all other cases."
+            )
+        ),
+    ] = False
     generate_table_images: Annotated[
         bool,
         Field(
