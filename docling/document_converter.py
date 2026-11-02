@@ -308,7 +308,7 @@ class PdfFormatOption(FormatOption):
     def configure_embedded_picture_images(self) -> Self:
         if (
             isinstance(self.pipeline_options, PdfPipelineOptions)
-            and self.pipeline_options.use_embedded_picture_images
+            and self.pipeline_options.use_embedded_pdf_picture_images
             and self.backend is ThreadedDoclingParseDocumentBackend
         ):
             if self.backend_options is None:
