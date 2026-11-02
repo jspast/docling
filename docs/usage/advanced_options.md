@@ -147,6 +147,43 @@ The options in this list require the explicit `enable_remote_services=True` when
 The example file [custom_convert.py](../examples/custom_convert.py) contains multiple ways
 one can adjust the conversion pipeline and features.
 
+### Use embedded PDF images for picture items
+
+The standard PDF pipeline normally creates `PictureItem` images by cropping
+the corresponding region from the rendered page. For PDF files, enable
+`PdfPipelineOptions(use_embedded_picture_images=True)` to use the embedded
+PDF image directly when the picture region contains one safe image object.
+The extracted image keeps its native pixel dimensions.
+
+Docling uses the rendered crop as a fallback when the region contains multiple
+images, text, vector shapes, masks, or other content, or when the embedded
+image cannot be matched safely. This option affects picture images only. It
+does not change page images or the image used by the layout model.
+
+```python
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.pipeline_options import PdfPipelineOptions
+from docling.document_converter import DocumentConverter, PdfFormatOption
+
+pipeline_options = PdfPipelineOptions(
+    generate_picture_images=True,
+    use_embedded_picture_images=True,
+)
+
+converter = DocumentConverter(
+    format_options={
+        InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+    }
+)
+result = converter.convert("document.pdf")
+```
+
+The equivalent CLI option is:
+
+```sh
+docling convert document.pdf --use-embedded-picture-images
+```
+
 ### Extract native PDF form fields
 
 Set `PdfPipelineOptions(extract_form_fields=True)` (CLI: `--extract-form-fields`)

@@ -171,7 +171,7 @@ def test_threaded_pipeline_page_range():
 
 
 def test_threaded_pipeline_keeps_backend_for_embedded_picture_images():
-    converter = _make_threaded_converter(use_embedded_pdf_picture_images=True)
+    converter = _make_threaded_converter(use_embedded_picture_images=True)
     converter.initialize_pipeline(InputFormat.PDF)
     pipeline = converter._get_pipeline(InputFormat.PDF)
 

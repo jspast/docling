@@ -727,7 +727,7 @@ class StandardPdfPipeline(ConvertPipeline):
                 self.pipeline_options.do_picture_classification,
                 self.pipeline_options.do_picture_description,
                 self.pipeline_options.do_chart_extraction,
-                self.pipeline_options.use_embedded_pdf_picture_images,
+                self.pipeline_options.use_embedded_picture_images,
             )
         )
 
@@ -1221,7 +1221,7 @@ class StandardPdfPipeline(ConvertPipeline):
                             embedded_image = False
                             if (
                                 isinstance(element, PictureItem)
-                                and self.pipeline_options.use_embedded_pdf_picture_images
+                                and self.pipeline_options.use_embedded_picture_images
                                 and page._backend is not None
                             ):
                                 cropped_im = page._backend.get_embedded_image(

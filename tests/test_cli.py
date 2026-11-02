@@ -136,9 +136,9 @@ def test_cli_convert_help():
     embedded_images_option = next(
         parameter
         for parameter in convert_command.params
-        if parameter.name == "use_embedded_pdf_picture_images"
+        if parameter.name == "use_embedded_picture_images"
     )
-    assert "--use-embedded-pdf-picture-images" in embedded_images_option.opts
+    assert "--use-embedded-picture-images" in embedded_images_option.opts
     separator_option = next(
         parameter
         for parameter in convert_command.params
@@ -1250,7 +1250,7 @@ def test_cli_accepts_threaded_docling_parse_backend(
             "7",
             "--release-native-memory-every-n-pages",
             "64",
-            "--use-embedded-pdf-picture-images",
+            "--use-embedded-picture-images",
         ],
     )
 

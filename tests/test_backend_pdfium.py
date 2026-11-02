@@ -113,6 +113,17 @@ def test_extract_single_embedded_image():
         doc_backend.unload()
 
 
+def test_reject_embedded_image_with_overlapping_page_content():
+    doc_backend = _get_backend(Path("tests/data/pdf/sources/amt_handbook_sample.pdf"))
+    try:
+        page_backend: PyPdfiumPageBackend = doc_backend.load_page(0)
+        bitmap_bbox = next(iter(page_backend.get_bitmap_rects()))
+
+        assert page_backend.get_embedded_image(bitmap_bbox) is None
+    finally:
+        doc_backend.unload()
+
+
 def test_num_pages(test_doc_path):
     doc_backend = _get_backend(test_doc_path)
     assert doc_backend.page_count() == 9

@@ -2277,7 +2277,7 @@ class PdfPipelineOptions(PaginatedPipelineOptions):
             )
         ),
     ] = False
-    use_embedded_pdf_picture_images: Annotated[
+    use_embedded_picture_images: Annotated[
         bool,
         Field(
             description=(
